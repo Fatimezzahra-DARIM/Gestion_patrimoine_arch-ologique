@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <title>Carte des Sites Archéologiques de Casablanca</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+    <!-- Sub Header -->
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="left-content">
+                        <p>Projet universitaire visant à développer une plateforme web pour la gestion du <em>patrimoine
+                                archéologique</em> de Casablanca</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="right-icons">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <a href="index.html" class="logo">Geo GAGE</a>
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="./index.html">Présentation</a></li>
+                            <li class="has-sub">
+                                <a href="javascript:void(0)">Sites Archéologiques</a>
+                                <ul class="sub-menu">
+                                    <li><a href="patrimoine-details1.html">La carrière Thomas I</a></li>
+                                    <li><a href="patrimoine-details3.html">Sidi Abderrahmane</a></li>
+                                    <li><a href="patrimoine-details4.html">Oulad Hamida 1</a></li>
+                                    <li><a href="patrimoine-details2.html">Ahl Al Oughlam</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="carte.html" class="active">Carte des Sites Archéologiques</a></li>
+                            <li class="scroll-to-section"><a href="gestion.html">Stratégies de gestion</a></li>
+                            <li class="scroll-to-section"><a href="equipe.html">Notre équipe</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Carte -->
+    <section id="map" class="upcoming-meetings2">
+        <h2 class="" style="text-align: center; color: white; background-color: #333; padding: 20px;">Carte des Sites
+            Archéologiques de Casablanca</h2>
+        <p style=" color: white; margin-top: 15px;margin-left: 10px;">Les sites archéologiques mentionnés ci-dessous
+            sont interactifs. En sélectionnant le nom d'un site, il est possible de
+            visualiser avec précision son emplacement sur la carte.</p>
+        <ul>
+            <li><a href="#" onclick="zoomToSite(0)" style="margin-left: 10px;">Ahl Al Oughlam</a></li>
+            <li><a href="#" onclick="zoomToSite(1)" style="margin-left: 10px;">Oulad Hamida 1</a></li>
+            <li><a href="#" onclick="zoomToSite(2)" style="margin-left: 10px;">Sidi Abderrahmane</a></li>
+            <li><a href="#" onclick="zoomToSite(3)" style="margin-left: 10px;">La carrière Thomas I</a></li>
+        </ul>
+        <div id="mapid" style="height: 500px;"></div>
+        <div class="footer">
+            <p>Copyright © 2024 Geo GAGE. Tous droits réservés.
+                <br>
+                Réalisée par: <a href="#" target="_parent" title="free css templates">DARIM _ Qraitech</a>
+                <br>
+                Encadrée par: <a href="#" target="_blank" title="Build Better UI, Faster">Mr
+                    Zahour</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialisation de la carte
+        var map = L.map('mapid').setView([33.5731, -7.5898], 12);
+
+        // Ajout des tuiles OpenStreetMap
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {}).addTo(map);
+
+        // Emplacements des sites archéologiques
+        var sites = [
+            {
+                name: "Ahl Al Oughlam",
+                coords: [33.5995, -7.4854],
+                description: "Site paléontologique célèbre pour ses fossiles."
+            },
+            {
+                name: "Oulad Hamida 1",
+                coords: [33.5905, -7.6232],
+                description: "Site archéologique révélant des industries lithiques anciennes."
+            },
+            {
+                name: "Sidi Abderrahmane",
+                coords: [33.6070, -7.6794],
+                description: "Site préhistorique célèbre pour ses découvertes d'outils et fossiles."
+            },
+            {
+                name: "La carrière Thomas I",
+                coords: [33.5855, -7.5503],
+                description: "Fouilles importantes révélant des traces de l'homo erectus."
+            }
+        ];
+
+        // Ajout des marqueurs pour chaque site
+        sites.forEach(function (site) {
+            L.marker(site.coords)
+                .addTo(map)
+                .bindPopup(`<b>${site.name}</b><br>${site.description}`);
+        });
+
+        // Fonction pour naviguer vers un site
+        function zoomToSite(index) {
+            var site = sites[index];
+            map.setView(site.coords, 16);
+            L.popup()
+                .setLatLng(site.coords)
+                .setContent(`<b>${site.name}</b><br>${site.description}`)
+                .openOn(map);
+        }
+    </script>
+</body>
+
+</html>
